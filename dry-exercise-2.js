@@ -9,29 +9,22 @@ let remainingGuesses = 3;
 
 // NOT DRY
 const playGuessingGame = () => {
-  while(remainingGuesses) {
+  while(remainingGuesses > 0) {
     let guess = prompt("Enter a number between 1-10: ");
     guess = guess * 1;
-    if (guess > secretNum) {
-      if (remainingGuesses > 1) {
-        remainingGuesses--;
-        alert(`Too high! Remaining guesses: ${remainingGuesses}`);
-      } else {
-        alert(`You lost the game, the number was: ${secretNum}`);
-      }
-    } else if (guess < secretNum) {
-      if (remainingGuesses > 1) {
-        remainingGuesses--;
-        alert(`Too low! Remaining guesses: ${remainingGuesses}`);
-      } else {
-        alert(`You lost the game, the number was: ${secretNum}`);
-        break;
-      }
+    if (guess !== secretNum && remainingGuesses > 1) {
+      remainingGuesses--;
+      guess > secretNum 
+        ? alert(`Too high! Remaining guesses: ${remainingGuesses}`) 
+        : alert(`Too low! Remaining guesses: ${remainingGuesses}`)
     } else if (guess === secretNum) {
       alert("You WON!");
+      break;
+    } else {
+      alert(`You lost the game, the number was: ${secretNum}`);
       break;
     }
   };
 }
 
-playDryGuessingGame();
+playGuessingGame();
